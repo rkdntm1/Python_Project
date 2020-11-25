@@ -5,7 +5,7 @@ import random
 print("------가위바위보 시작!------- ")
 #가위 바위 보 를 리스트로 지정해 놓기
 A = ['가위', '바위', '보'] 
-#횟수 카운터 추가
+#횟수 카운터 추가(총 횟수, 승리, 무승부, 패배 횟수 보기)
 win = 0
 cnt = 0
 draw = 0
@@ -15,6 +15,8 @@ while True:
     computer = random.choice(A)
     #나의 가위바위보값 입력
     answer = input('무엇을 내실껀가요? ')
+    if answer == '그만':
+        break
     if computer == '가위':
         if answer == '가위':
             print('비겼다!')
@@ -23,7 +25,9 @@ while True:
             print('이겼다!')
             win += 1
         elif answer == '보' :
-            print('졌다!')            
+            print('졌다!')
+        else:  # 가위 바위 보 를 잘못 입력했을경우 continue로 횟수 카운터 못하게하기
+            continue            
     elif computer == '바위' :
         if answer == '가위' :
             print('졌다!')
@@ -33,6 +37,8 @@ while True:
         elif answer == '보' :
             print('이겼다!')
             win += 1
+        else:
+            continue
     elif computer == '보' :
         if answer == '가위' :
             print('이겼다!')
@@ -42,8 +48,9 @@ while True:
         elif answer == '보' :
             print('비겼다!')
             draw += 1
-    if answer == '그만':
-        break
+        else:
+            continue
+    
     cnt += 1 
 print("======게임종료/게임결과 ======")
 print("총 횟수 : {0} , 승리 : {1} 패배 : {2} 무승부 {3}".format(cnt,win, cnt-win-draw, draw ))
